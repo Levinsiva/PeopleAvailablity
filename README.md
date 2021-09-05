@@ -13,6 +13,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Overview 
 
 1) Created a new component task
-2) Sample data has been generated form data.ts
+2) Sample data has been generated from data.ts
 3) By default it will show all the status by date 
 4) By clicking on the status box a modal will pop up and there we can change the status.
