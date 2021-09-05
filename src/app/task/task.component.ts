@@ -17,8 +17,8 @@ export class TaskComponent implements OnInit {
   showModal: boolean | undefined;
   title: string | undefined;
   data:typeof data | undefined;
-  empId:number |undefined;
-  date:string |undefined;
+  empId:number | undefined;
+  date:string | undefined;
 
   //Bootstrap Modal Open event
   show(empId:number,date:string) {
