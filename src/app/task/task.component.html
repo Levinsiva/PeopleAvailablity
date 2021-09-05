@@ -1,0 +1,127 @@
+<section id="list-peoples">
+    <div class="container">
+        <div class="card" style="overflow-x: auto;">
+            <!-- Check Availability Filters -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="available_check">
+                        <div class="form-check form-check-inline available_check_box">
+                            <input class="form-check-input" type="checkbox" id="available" value="available">
+                            <label class="form-check-label" for="available">Available</label>
+                        </div>
+                        <div class="form-check form-check-inline unavailable_check_box">
+                            <input class="form-check-input" type="checkbox" id="unavailable" value="unavailable">
+                            <label class="form-check-label" for="unavailable">Unavailable</label>
+                        </div>
+                        <div class="form-check form-check-inline havent_indicated_check_box">
+                            <input class="form-check-input" type="checkbox" id="havent_indicated" value="Haven't Indicated">
+                            <label class="form-check-label" for="havent_indicated">Haven't Indicated</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of Check Availability Filters -->
+
+            <!--Previous Next Navigation -->
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="nav-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Fortnight</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-align-right nav-button">Next Fortnight <i class="fa fa-arrow-right" aria-hidden="true"></i> </p>
+                </div>
+            </div>
+            <!--End of Previous Next Navigation -->
+
+            <!--People Availability List -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table" id="table">
+                        <thead>
+                            <div></div>
+                            <tr>
+                                <th colspan=" 3 ">
+                                    <p class="show-text ">Show Details (Subjects and Tags)</p>
+                                </th>
+                                <th *ngFor="let eachData of data && data[0]?.availability" class="{{eachData.status}}">
+                                    <p>{{eachData.day}}</p>
+                                    <p>{{eachData.date}}</p>
+                                    <p>{{eachData.month}}</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row one -->
+                            <tr *ngFor="let itemRow of data">
+                                <td>
+                                    <p class="name">{{itemRow.name}}<i class="fa fa-star " aria-hidden="true "></i>
+                                        <i class="fa fa-star " aria-hidden="true "></i>
+                                    </p><span class="phone"><i class="fa fa-phone fa-rotate-270 " aria-hidden="true"></i> {{itemRow.phone}}
+                                </span></td>
+
+                                <td>
+                                    <div class="form-check">
+                                        <input *ngIf="itemRow.name==='Kylie Jolly'" checked class="form-check-input" type="checkbox" id="flexCheckDefault{{itemRow.name}}">
+                                        <input *ngIf="itemRow.name!=='Kylie Jolly'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault{{itemRow.name}}">
+                                      AE+C?
+                                    </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="add_note" *ngIf="itemRow.name!=='Sarah Symons'">Add note</p>
+                                    <p class="friends_name" *ngIf="itemRow.name==='Sarah Symons'">Friend with Rya..</p>
+                                    <p class="add_note" *ngIf="itemRow.name==='Sarah Symons'">Edit note</p>
+                                </td>
+                                <td *ngFor="let eachData of itemRow.availability">
+                                    <h1 *ngIf="eachData.status==='holiday'" class="{{eachData.status}}"><i class="fa fa-calendar-times-o " aria-hidden="true "></i></h1>
+                                    <h1 *ngIf="eachData.status!=='holiday'" (click)="show(itemRow.id, eachData.date) " class="{{eachData.status}}">{{eachData.statusKey}}</h1>
+                                </td>
+
+                            </tr>
+
+                    </table>
+                </div>
+
+            </div>
+            <!--End of People Availability List -->
+            <!-- <button type="button " class="btn btn-primary " (click)="show() ">
+                Open modal
+              </button> -->
+
+            <!-- The Modal -->
+            <div class="modal " id="myModal " [style.display]="showModal ? 'block' : 'none' ">
+                <div class="modal-dialog ">
+                    <div class="modal-content ">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header ">
+                            <h4 class="modal-title ">{{ title }}</h4>
+                            <button type="button " class="close " data-dismiss="modal " (click)="hide() ">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body ">
+                            <select #newItem name="status" class="form-select" aria-label="Default select example">
+                                <option selected>Select Status</option>
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
+                                <option value="haventIndicated">Haven't Indicated</option>
+                              </select>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="hide()">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(newItem.value)">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.modal -->
+
+    </div>
+</section>
